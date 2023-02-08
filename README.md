@@ -1,5 +1,5 @@
 # Project-2
-Content for the second group project, "Our title." *Group 7*
+Content for the second group project, "Chat App." *Group 7*
 
 # Project Requirements
 With your team, you’ll conceive and execute a design that solves a real-world problem. In creating your first collaborative full-stack application, you’ll combine a robust back end—with servers, databases, advanced APIs, and user authentication—to an intuitive front end. You’ll continue to build on the agile development methodologies you’ve used throughout this course, like storing your project code in GitHub, managing your work with a project management tool, and implementing feature and bug fixes using the Git branch workflow and pull requests.
