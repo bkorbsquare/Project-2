@@ -3,6 +3,8 @@ const path = require('path');
 const app = express();
 const server = require('http').createServer(app);
 const PORT = 3001;
+const handlebars = require('express-handlebars');
+
 
 app.use(express.static(path.join(__dirname, 'public')));
 
