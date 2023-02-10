@@ -1,3 +1,4 @@
+//test data for user table
 [
     {
       "username": "Sal",

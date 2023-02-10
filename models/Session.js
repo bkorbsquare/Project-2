@@ -11,13 +11,23 @@ Session.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    title: {
+    user_id: {
       type: DataTypes.STRING,
       allowNull: false,
+      foreignKey: true,
+      },
+    session_start:{
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+      },
+    session_end:{
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
       },
     },
   {
     sequelize,
+    timestamps: true,
     freezeTableName: true,
     underscored: true,
     modelName: 'session',
