@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat App</title>
+  <link rel="stylesheet" type="text/css" href="/public/style.css">
+</head>
+
+<body>
+  <header>
+    <h1>Welcome to Chat App!</h1>
+  </header>
+  <nav>
+    {{#if loggedIn}}
+    <a href="/views/chat.handlebars">Chat</a>
+    <button id="logout" class="btn-no-style">Logout</button>
+    {{else}}
+    <a href="/views/login.handlebars">Login</a>
+    {{/if}}
+  </nav>
+  <main>
+      {{{ body }}}
+  </main>
+  {{#if loggedIn}}
+  <script src="/public/js/logout.js"></script>
+  {{/if}}
+</body>
+
+</html>
