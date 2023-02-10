@@ -17,18 +17,20 @@ Session.init(
       foreignKey: true,
       },
     session_start:{
-        type: DataTypes.BOOLEAN,
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW,
         allowNull: false,
       },
     session_end:{
-        type: DataTypes.BOOLEAN,
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW,
         allowNull: false,
       },
     },
   {
     sequelize,
-    timestamps: true,
     freezeTableName: true,
+    timestamps: false,
     underscored: true,
     modelName: 'session',
   }
