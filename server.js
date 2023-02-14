@@ -1,61 +1,56 @@
 const express = require('express');
+// const handlebars = require('express-handlebars');
 const path = require('path');
 const app = express();
 const server = require('http').createServer(app);
+const io = require('socket.io')(server);
 const PORT = process.env.PORT || 3001;
-const handlebars = require('express-handlebars');
-const chat = [];
-const socket = io.connect("https://localhost:3001");
-const field = document.getElementById("field");
-const sendButton = document.getElementById("send");
-const content = document.getElementById("content");
-const name = document.getElementById("name");
 
-
+// Default Routing Page
 app.use(express.static(path.join(__dirname, 'public')));
-
-app.get('/chat', (req, res) => {
-    res.send('<h1>Chat Page!</h1>');
-    console.log(`Connection to /chat success`);
-});
 
 server.listen(PORT, () => {
     console.info(`Listening on ${PORT}`);
 });
 
+// On connect
+io.on('connect', (socket) => {
+    console.log(`Connection into ${socket}.`);
 
+    // if user added:
+    socket.on('add user', (username) => {
+        // changing socket username to new user
+        socket.username = username;
+        // local emit for login, not global
+        socket.emit('login', {
+            username: socket.username
+        }),
+        // global emit for user join
+        socket.broadcast.emit('user joined', {
+            username: socket.username
+        });
+        console.log(`${username} joined.`);
+    });
 
-//chat listner socket
-socket.on('chat', function (data) {
-
- if(data.chat){
-        const https = '';
-        for(var i=0; i<chat.length; i++) {
-            https += '<b>' + (chat[i].username ? chat[i].username : 'Server' + ': </b>');
-            https += chat[i].message + '</b>';
-        }
-        content.innerHTML = https;
-        content.scrollTop = content.scrollHeight;
-    }
-    else
-    {
-        console.log("There is a problem in the imput data:", data);
-    }
-});
-    // button to send message to socket
-    sendButton.onclick = function() {
-    	if(name.value == "") {
-            alert("Please type your name!");
+    // if (new) chat sent:
+    socket.on('chat', (data) => {
+        if (!data || data === "") {
+            console.log("No chat data present to send.");
         } else {
-        var text = field.value;
-        socket.emit('send', { message: text, username: name.value });
-        field.value = '';
-        }
-    };
-    // set enter key listener 
-    field.addEventListener('keypress', function (e) {
-	    var key = e.which || e.keyCode;
-	    if (key === 13) { 
-	    	sendButton.onclick();
-    	}
-	});
+            socket.broadcast.emit('new message', {
+                username: socket.username,
+                message: data
+            });
+            console.log(`Chat data sent to ${socket}.`);
+        };
+    });
+
+    // on user disconnect
+    socket.on('disconnect', () => {
+        // global emit that client has left
+        socket.broadcast.emit('user left', {
+            username: socket.username
+        });
+        console.log(`Disconnect from ${socket}.`);
+    });
+});
