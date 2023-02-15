@@ -34,6 +34,13 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     };
 
+    //Grab user list (to be displayed in the sidebar). To be fixed.
+    function outputUsernames(users) {
+        userList.innerHTML = `
+           ${users.map(user => `<li>${user.user.username}</li>`).join('')}
+        `;
+     }
+
     // Socket events
     socket.on('login', (data) => {
         connected = true;
