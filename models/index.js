@@ -1,14 +1,13 @@
 const User = require('./User');
-const Session = require('./Session');
+const ChatSession = require('./ChatSession');
 
-User.hasMany(Session, {
+User.hasMany(ChatSession, {
   foreignKey: 'user_id',
   onDelete: 'CASCADE'
 });
 
-Session.belongsTo(User, {
-
+ChatSession.belongsTo(User, {
   foreignKey: 'user_id'
 });
 
-module.exports = { User, Session };
+module.exports = { User, ChatSession };
