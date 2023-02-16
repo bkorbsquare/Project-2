@@ -4,7 +4,7 @@ const handlebars = require('express-handlebars');
 const session = require('express-session');
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
-const routes = require('./controllers/index');
+const routes = require('./controllers');
 const clog = require('clog');
 
 const app = express();
@@ -35,6 +35,7 @@ app.set('view engine', 'handlebars');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(routes);
 
 // the following line gets complaints from the terminal for some reason
 // app.use(routes);
