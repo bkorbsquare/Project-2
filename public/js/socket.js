@@ -20,6 +20,11 @@ document.addEventListener((e) => {
 
     let connected = false;
 
+    socket.on('login', () => {
+        connected= true;
+        console.log("Logged in, connected");
+    });
+
     const sendMessage = () => {
         let message = inputMessage.value();
         if (message && connected) {
