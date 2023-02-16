@@ -1,67 +1,92 @@
 const router = require('express').Router();
 const { User } = require('../../models');
+const clog = require('clog');
 
+// CREATE new user
 router.post('/', async (req, res) => {
-    // This must be accessed only if they create a new user, I suppose?
+    clog.info("Posting new User...");
     try {
-        // create user with request body info
-        const userData = await User.create(req.body);
-        // save a new user session
-        req.session.save(() => {
-            req.session.user_id = userData.id;
-            req.session.logged_in = true;
+        const dbUserData = await User.create({
+            username: req.body.username,
+            password: req.body.password,
+        });
 
-            res.status(200).json(userData);
-        })
+        req.session.save(() => {
+            req.session.loggedIn = true;
+            //respond with userdata
+            res.status(200).json(dbUserData);
+        });
+        clog.info("Successfully created new User.");
 
     } catch (err) {
-        res.status(400).json(err);
+        clog.debug(err);
+        clog.warn("Could not post new User.");
+        res.status(500).json(err);
     }
 });
 
-// Login attempt post
+// LOGIN user
 router.post('/login', async (req, res) => {
+    clog.info("Attempting login post...");
     try {
-        // Might need to be changed if we don't user username as the key name.
-        // find a user by username
-        const userData = await User.findOne({ where: { username: req.body.username } });
-
-        if (!userData) {
+        // find a username in the database
+        const dbUserData = await User.findOne({
+            where: {
+                username: req.body.username,
+            },
+        });
+        
+        // if no user data in database
+        if (!dbUserData) {
             res
                 .status(400)
-                .json({ message: `Incorrect username or password.`});
+                .json({ message: 'Incorrect username or password.'});
+            clog.warn("No user in the database.");
             return;
-        }
+        };
 
-        const validPassword = await userData.checkPassword(req.body.password);
+        // find a password in the database
+        const validPassword = await dbUserData.checkPassword(req.body.password);
 
+        // if no valid password can be found
         if (!validPassword) {
             res
                 .status(400)
-                .json({ message: `Incorrect email or password.`});
+                .json({ message: 'Incorrect username or password.'});
+            clog.warn("No password in the database.");
             return;
-        }
+        };
 
+        // if username and password valid, log in
         req.session.save(() => {
-            req.session.user_id = userData.id;
-            req.session.logged_in = true;
+            req.session.loggedIn = true;
+            console.log(req.session.cookie);
 
-            res.json({ user: userData, message: 'Logged in.' });
-        })
-
+            res
+            .status(200)
+            .json({ user: dbUserData, message: 'Successfully logged in.'});
+            clog.info("Successfully logged in.");
+        });
     } catch (err) {
-        res.status(400).json(err);
-    }
+        clog.debug(err);
+        clog.warn("Could not log in.");
+        res.status(500).json(err);
+    };
 });
 
+// LOGOUT user
 router.post('/logout', (req, res) => {
-    if (req.session.logged_in) {
+    clog.info(`Attempting logout post...`);
+    if (req.session.loggedIn) {
+        clog.info("Logged in; logging out...");
         req.session.destroy(() => {
+            clog.info("Logged out.");
             res.status(204).end();
         });
     } else {
+        clog.warn("Could not log out.");
         res.status(404).end();
-    }
+    };
 });
 
 module.exports = router;
