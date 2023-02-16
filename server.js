@@ -36,9 +36,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(routes);
 
-// the following line gets complaints from the terminal for some reason
-// app.use(routes);
-
 sequelize.sync({ force: false }).then(() => {
     server.listen(PORT, () => {
         console.info(`Listening on ${PORT}`);
