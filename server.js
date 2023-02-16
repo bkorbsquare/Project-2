@@ -5,6 +5,7 @@ const session = require('express-session');
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const routes = require('./controllers/index');
+const clog = require('clog');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
