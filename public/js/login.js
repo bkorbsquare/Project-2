@@ -10,33 +10,30 @@ const loginFormHandler = async (event) => {
   if (username && password) {
       // post to login route
       const response = await fetch('/api/users/login', {
-          method: 'POST',
-          body: JSON.stringify({ username, password }),
-          headers: { 'Content-Type': 'application/json' },
+        method: 'POST',
+        body: JSON.stringify({ username, password }),
+        headers: { 'Content-Type': 'application/json' },
       });
-
+  
       if (response.ok) {
-          // if login route was successful, bring to homepage
-          document.location.replace('/');
+        document.location.replace('/');
       } else {
-          alert('Failed to log in.');
-      };
-  };
+        alert('Failed to log in.');
+      }
+    }
 };
 
 const signupFormHandler = async (event) => {
-  event.preventDefault();
+    event.preventDefault();
   
-  // grabbing username and password values entered
-  const username = document.querySelector('#username-signup').value.trim();
-  const password = document.querySelector('#password-signup').value.trim();
-
-  if (username && password) {
-       // post to user-routes which will create a new User
+    const username = document.querySelector('#username-signup').value.trim();
+    const password = document.querySelector('#password-signup').value.trim();
+  
+    if (username && password) {
       const response = await fetch('/api/users', {
-          method: 'POST',
-          body: JSON.stringify({ username, password }),
-          headers: { 'Content-Type': 'application/json' },
+        method: 'POST',
+        body: JSON.stringify({ username, password }),
+        headers: { 'Content-Type': 'application/json' },
       });
 
       if (response.ok) {

@@ -1,17 +1,19 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // const usernameInput = document.querySelector('.username');
-    const messages = require('../../views/chat.handlebars') || document.querySelector('.messages');
-    const loginInfo = require('./login');
+console.log("Main loaded.");
 
-    const socket = io();
+document.addEventListener('DOMContentLoaded', (e) => {
+    e.preventDefault();
 
-    let username
+    const username = document.querySelector('#username-login').value.trim();
+
+    if (!loginInfo) {
+        console.log("this isnt working");
+    };
+
     let connected = false;
 
     const setUsername = () => {
         username = loginInfo.loginFormHandler;
-        if (username) { // if username is valid
-            // switch to chat page somehow?
+        if (username) {
             socket.emit('add user', username);
         };
     };
@@ -35,21 +37,11 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     };
 
-    // Socket events
-    socket.on('login', () => {
-        connected = true;
-        console.log(connected);
-    });
+    // Grab user list (to be displayed in the sidebar). To be fixed.
+    function outputUsernames(users) {
+        userList.innerHTML = `
+            ${users.map(user => `<li>${user.user.username}</li>`).join('')}
+        `;
+    }
 
-    socket.on('new chat', (data) => {
-        addChatMessage(data);
-    });
-
-    socket.on('disconnect', () => {
-        console.log("You have been disconnected.");
-    });
-
-    socket.io.on('reconnect_error', () => {
-        console.log('Reconnect attempt failed.');
-    });
 });

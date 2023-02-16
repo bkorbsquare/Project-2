@@ -36,6 +36,8 @@ router.post('/login', async (req, res) => {
             },
         });
         
+        const userData = dbUserData.get({plain: true});
+
         // if no user data in database
         if (!dbUserData) {
             res
@@ -46,7 +48,7 @@ router.post('/login', async (req, res) => {
         };
 
         // find a password in the database
-        const validPassword = await dbUserData.checkPassword(req.body.password);
+        const validPassword = await userData.checkPassword(req.body.password);
 
         // if no valid password can be found
         if (!validPassword) {
@@ -57,21 +59,27 @@ router.post('/login', async (req, res) => {
             return;
         };
 
+        console.log("heres user data:", userData);
+
         // if username and password valid, log in
         req.session.save(() => {
             req.session.loggedIn = true;
-            console.log(req.session.cookie);
+            console.log("here's the cookie:", req.session.cookie);
 
             res
             .status(200)
-            .json({ user: dbUserData, message: 'Successfully logged in.'});
+            .json({ user: userData, message: 'Successfully logged in.'});
             clog.info("Successfully logged in.");
         });
-    } catch (err) {
-        clog.debug(err);
-        clog.warn("Could not log in.");
-        res.status(500).json(err);
-    };
+        res.redirect('/chat');
+
+        } catch (err) {
+            clog.debug(err);
+            clog.warn("Could not log in.");
+            res.status(500).json(err);
+        };
+
+
 });
 
 // LOGOUT user

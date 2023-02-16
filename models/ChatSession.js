@@ -12,7 +12,7 @@ ChatSession.init(
       autoIncrement: true,
     },
     user_id: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
       foreignKey: true,
       },
