@@ -10,8 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const setUsername = () => {
         username = loginInfo.loginFormHandler;
-        if (username) { // if username is valid
-            // switch to chat page somehow?
+        if (username) {
             socket.emit('add user', username);
         };
     };
@@ -34,35 +33,24 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     };
 
-    //Grab user list (to be displayed in the sidebar). To be fixed.
+    // Grab user list (to be displayed in the sidebar). To be fixed.
     function outputUsernames(users) {
         userList.innerHTML = `
-           ${users.map(user => `<li>${user.user.username}</li>`).join('')}
+            ${users.map(user => `<li>${user.user.username}</li>`).join('')}
         `;
-     }
+    }
 
     // Socket events
-    socket.on('login', (data) => {
+    socket.on('login', () => {
         connected = true;
-        // addJoinMessage(data);
+        console.log(connected);
+
+        socket.on('disconnect', () => {
+            console.log("You have been disconnected.");
+        });
     });
 
     socket.on('new chat', (data) => {
         addChatMessage(data);
-    });
-
-    socket.on('disconnect', () => {
-        console.log('You have been disconnected.');
-    });
-
-    socket.io.on('reconnect', () => {
-        console.log('You have reconnected.');
-        if (username) {
-            socket.emit('add user', username);
-        }
-    });
-
-    socket.io.on('reconnect_error', () => {
-        console.log('Reconnect attempt failed.');
     });
 });
