@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
     const addChatMessage = (data) => {
         const usernameDiv = `<span class="username">${data.username}</span>`;
         const messageDiv = `<span class="messageBody">${data.message}</span>`;
+        
         if (!usernameDiv || !messageDiv) {
             console.log("There is a problem in the input data.");
         } else {
