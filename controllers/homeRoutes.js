@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
             clog.info("Logged in. Redirecting to chat...");
             res
                 // .redirect('http://localhost:3000/')
-                .render('chat');
+                .redirect('chat');
             // necessary to redirect to a different port because 3001 is where our normal server is running; socket.io won't run if the port is already in use by the normal server.
             return;
         };
@@ -34,6 +34,11 @@ router.get('/', async (req, res) => {
 router.get('/login', (req, res) => {
     clog.info(`Accessing login...`);
     res.render('login');
+});
+
+router.get('/chat', (req, res) => {
+    clog.info(`Accessing chat...`);
+    res.render('chat');
 });
 
 module.exports = router;
