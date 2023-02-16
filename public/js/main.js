@@ -1,11 +1,16 @@
+console.log("Main is working");
+
 document.addEventListener('DOMContentLoaded', () => {
-    // const usernameInput = document.querySelector('.username');
-    const messages = require('../../views/chat.handlebars') || document.querySelector('.messages');
-    const loginInfo = require('./login');
+
+    const username = document.querySelector('#username-login').value.trim();
+    const password = document.querySelector('#password-login').value.trim();
+
+    if (!loginInfo) {
+        console.log("this isnt working");
+    };
 
     const socket = io();
 
-    let username
     let connected = false;
 
     const setUsername = () => {
