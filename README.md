@@ -9,7 +9,7 @@
 
 ## Installation
 
-On GitHub.com, navigate to the main page of the repository. Above the list of files, click 'Code'. Click 'Open with GitHub Desktop' to clone and open the repository. Follow the prompts in GitHub Desktop to complete the clone. Open the code in your code editor. Run "npm i" to install the dependencies and "npm start" to run the server. Open "localhost:3001" in your browser. You may use a hosting site like Heroku to go live. 
+On GitHub.com, navigate to the main page of the repository. Above the list of files, click 'Code'. Click 'Open with GitHub Desktop' to clone and open the repository. Follow the prompts in GitHub Desktop to complete the clone. Open the code in your code editor. Run "npm i" in your terminal to install the dependencies and "npm start" to run the server. Open "localhost:3001" in your browser. You may use a hosting site like Heroku to go live. 
 
 ## Usage
 
