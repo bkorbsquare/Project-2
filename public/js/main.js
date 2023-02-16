@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const addChatMessage = (data) => {
         const usernameDiv = `<span class="username">${data.username}</span>`;
         const messageDiv = `<span class="messageBody">${data.message}</span>`;
+        
         if (!usernameDiv || !messageDiv) {
             console.log("There is a problem in the input data.");
         } else {
@@ -34,17 +35,10 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     };
 
-    //Grab user list (to be displayed in the sidebar). To be fixed.
-    function outputUsernames(users) {
-        userList.innerHTML = `
-           ${users.map(user => `<li>${user.user.username}</li>`).join('')}
-        `;
-     }
-
     // Socket events
-    socket.on('login', (data) => {
+    socket.on('login', () => {
         connected = true;
-        // addJoinMessage(data);
+        console.log(connected);
     });
 
     socket.on('new chat', (data) => {
@@ -52,14 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     socket.on('disconnect', () => {
-        console.log('You have been disconnected.');
-    });
-
-    socket.io.on('reconnect', () => {
-        console.log('You have reconnected.');
-        if (username) {
-            socket.emit('add user', username);
-        }
+        console.log("You have been disconnected.");
     });
 
     socket.io.on('reconnect_error', () => {
