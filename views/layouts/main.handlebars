@@ -11,27 +11,16 @@
 			integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk="
 			crossorigin="anonymous"
 		/>
-  <link rel="stylesheet" type="text/css" href="/public/style.css">
+  <link rel="stylesheet" type="text/css" href="/style.css">
 </head>
 
 <body>
   <header class="join-header">
     <h1><i class="fas fa-smile"></i> ChatApp</h1>
   </header>
-  <nav>
-    {{#if loggedIn}}
-    <a href="/views/chat.handlebars">Chat</a>
-    <button id="logout" class="btn-no-style">Logout</button>
-    {{else}}
-    <a href="/views/login.handlebars">Login</a>
-    {{/if}}
-  </nav>
   <main>
       {{{ body }}}
   </main>
-  {{#if loggedIn}}
-  <script src="/public/js/logout.js"></script>
-  {{/if}}
   <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
   <script src="/socket.io/socket.io.js"></script>
   <script src="/public/js/main.js"></script>

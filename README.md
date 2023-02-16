@@ -1,80 +1,51 @@
-# Project-2
-Content for the second group project, "Chat App." *Group 7*
+# Project 2
 
-# Project Requirements
-With your team, you’ll conceive and execute a design that solves a real-world problem. In creating your first collaborative full-stack application, you’ll combine a robust back end—with servers, databases, advanced APIs, and user authentication—to an intuitive front end. You’ll continue to build on the agile development methodologies you’ve used throughout this course, like storing your project code in GitHub, managing your work with a project management tool, and implementing feature and bug fixes using the Git branch workflow and pull requests.
+## Description
 
-# Acceptance Criteria
-Use Node.js and Express.js to create a RESTful API.
-Use Handlebars.js as the template engine.
-Use MySQL and the Sequelize ORM for the database.
-Have both GET and POST routes for retrieving and adding new data.
-Use at least one new library, package, or technology that we haven’t discussed.
-Have a folder structure that meets the MVC paradigm.
-Include authentication (express-session and cookies).
-Protect API keys and sensitive information with environment variables.
-Be deployed using Heroku (with data).
-Have a polished UI.
-Be responsive.
-Be interactive (in other words, accept and respond to user input).
-Meet good-quality coding standards (file structure, naming conventions, follows best practices for class/id naming conventions, indentation, quality comments, and so on).
-Have a professional README (with unique name, description, technologies used, screenshot, and link to deployed application).
+- This code displays a chat application.
+- I wanted to create a private chat application for my group and I.
+- We coded using Javascript, Express, Mysql, Handlebars, and Socket io under the MVC paradigm.
+- Given more time we would include additional style elements and features on the chat page like an emoji bar & a light/dark switch.
 
-# Presentation Requirements
-Use this Project Presentation Template [https://docs.google.com/presentation/d/10QaO9KH8HtUXj__81ve0SZcpO5DbMbqqQr4iPpbwKks/edit#slide=id.p] to address the following:
+## Installation
 
-Elevator pitch: A one-minute description of your application.
-Concept: What is your user story? What was your motivation for development?
-Process: What were the technologies used? How were tasks and roles broken down and assigned? What challenges did you encounter? What were your successes?
-Demo: Show your stuff!
-Directions for future development.
-Links to the deployed application and the GitHub repository. Use the Guide to Deploy with Heroku and MySQL [https://coding-boot-camp.github.io/full-stack/heroku/deploy-with-heroku-and-mysql] on The Full-Stack Blog if you need a reminder on how to deploy to Heroku.
+On GitHub.com, navigate to the main page of the repository. Above the list of files, click 'Code'. Click 'Open with GitHub Desktop' to clone and open the repository. Follow the prompts in GitHub Desktop to complete the clone. Open the code in your code editor. Run "npm i" to install the dependencies and "npm start" to run the server. Open "localhost:3001" in your browser. You may use a hosting site like Heroku to go live. 
 
-# Grading Requirements
-This project is graded based on the following criteria:
+## Usage
 
-Technical Acceptance Criteria: 25%
-Satisfies the following code requirements:
+Use this project as a reference when building a chat application.
 
-Application uses a Node.js and Express.js back end and uses both GET and POST routes for retrieving and adding new data.
-Application has a folder structure that meets the MVC paradigm and uses Handlebars.js as the template engine.
-Application is backed by a MySQL database with a Sequelize ORM and protects API keys and sensitive information with environment variables.
-Application includes user authentication (express-session and cookies).
-Application uses at least one new library, package, or technology not covered in class.
+![image](/assets/Screenshot%202023-02-16%20151559.jpg)
 
-Concept 10%
-Application should be a unique and novel idea.
-Your group should clearly and concisely articulate your project idea.
+## Deployed Site
 
-Deployment: 20%
-Application deployed at live URL on Heroku and loads with no errors.
-Application GitHub URL submitted.
+https://project-2-group-7.herokuapp.com/ 
 
-Repository Quality: 10%
-Repository has a unique name.
-Repository follows best practices for file structure and naming conventions.
-Repository follows best practices for class/id-naming conventions, indentation, quality comments, etc.
-Repository contains multiple descriptive commit messages.
-Repository contains a quality README file with description, screenshot, and link to deployed application.
+## Credits
 
-Application Quality: 15%
-Application user experience is intuitive and easy to navigate.
-Application user interface style is clean and polished.
-Application is responsive.
+Thank you so much to the whole team: https://github.com/Akshatha2022, https://github.com/allstarcoding777, and especially https://github.com/karlnh.
+## License
 
-Presentation 10%
-Your group should present using Powerpoint or a similar presentation software.
-Every group member should speak during the presentation.
-Your presentation should follow the Project Presentation Template Links to an external site..
+MIT License
 
-Collaboration 10%
-There are no major disparities in the number of GitHub contributions between group members.
-How to Submit Your Interactive Full-Stack Project
-Each member of your group is required to submit the following for review:
+Copyright (c) 2022 Brandon
 
-# Submission
-Each member of your group is required to submit the following for review:
-The URL of the deployed application.
-The URL of the GitHub repository, with a unique name and a README describing the project.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-Test change
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
