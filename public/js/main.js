@@ -1,6 +1,7 @@
-console.log("Main is working");
+console.log("Main loaded.");
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', (e) => {
+    e.preventDefault();
 
     const username = document.querySelector('#username-login').value.trim();
     const password = document.querySelector('#password-login').value.trim();
@@ -8,8 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!loginInfo) {
         console.log("this isnt working");
     };
-
-    const socket = io();
 
     let connected = false;
 
@@ -45,17 +44,4 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
     }
 
-    // Socket events
-    socket.on('login', () => {
-        connected = true;
-        console.log(connected);
-
-        socket.on('disconnect', () => {
-            console.log("You have been disconnected.");
-        });
-    });
-
-    socket.on('new chat', (data) => {
-        addChatMessage(data);
-    });
 });
