@@ -1,27 +1,46 @@
 <main class="join-main">
-	<form action="chat.html">
+	<form action="chat.html" class="login-form">
 		<div class="form-control">
-			<label for="username">Username</label>
+			<label for="username-login">Username</label>
 				<input
 					type="text"
 					name="username"
-					id="username"
+					id="username-login"
 					placeholder="Enter username..."
 					required
 				/>
 		</div>
 		<div class="form-control">
-			<label for="password">Password</label>
+			<label for="password-login">Password</label>
                 <input
-                    type="text"
+                    type="password"
                     name="password"
-                    id="password"
+                    id="password-login"
                     placeholder="Enter password..."
                     required
                 />
         </div>
         <button type="submit" class="btn">Join Chat</button>
     </form>
+	<form class="signup-form">
+		<div class="form-control">
+			<label for="username-signup">Username</label>
+			<input
+				class="form-input"
+				type="text"
+				id="username-signup"
+			/>
+		</div>
+		<div class="form-control">
+			<label for="password-signup">Password</label>
+			<input
+				class="form-input"
+				type="password"
+				id="password-signup"
+			/>
+		</div>
+		<button type="submit" class="btn">Signup</button>
+	</form>
 </main>
 
-<script src="./js/login.js"></script>
+<script src="/js/login.js"></script>
